@@ -1,0 +1,7 @@
+<form [formGroup]="form" (submit)="onSubmit()">
+    <app-input [control]="form.get('name')" [type]="'text'" [id]="'nameInput'" [placeholder]="'Jean'" [label]="'Name'">
+    </app-input>
+    <app-input [control]="form.get('email')" [type]="'email'" [id]="'emailInput'" [placeholder]="'jean@gmail.com'"
+        [label]="'Email'"></app-input>
+    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Add</button>
+</form>

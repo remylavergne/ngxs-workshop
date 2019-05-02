@@ -1,0 +1,19 @@
+<div class="modal" *ngIf="isOpened | async">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{title | async}}</h5>
+                <button type="button" class="close" (click)="close()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>{{text | async}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="confirm()">{{confirmBtn | async}}</button>
+                <button type="button" class="btn btn-secondary" (click)="close()">{{closeBtn | async}}</button>
+            </div>
+        </div>
+    </div>
+</div>

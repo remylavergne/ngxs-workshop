@@ -1,0 +1,5 @@
+<div class="form-group">
+    <label [for]="id">{{label}}</label>
+    <input class="form-control" [ngClass]="{'is-invalid': control.invalid && control.touched}" [formControl]="control"
+        [id]="id" [type]="type" [placeholder]="placeholder || ''" />
+</div>
