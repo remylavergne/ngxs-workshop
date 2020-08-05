@@ -22,7 +22,7 @@ Ouvrir l'adresse dans le navigateur : <http://localhost:4200/>
 
 Au démarrage de l'application, il n'y a aucun utilisateur enregistré dans le *State* initial.
 
-### Créer un utilisateur
+### Créer un utilisateur (Branche : <https://github.com/remylavergne/ngxs-workshop/tree/add-user>)
 
 - Créer une action pour ajouter une utilisateur `src/home/actions/user/add-user.action.ts` :
 
@@ -86,7 +86,7 @@ export class UsersComponent implements OnInit {
 }
 ```
 
-### Supprimer un utilisateur (version facile)
+### Supprimer un utilisateur (Branche : <https://github.com/remylavergne/ngxs-workshop/tree/delete-user>)
 
 - Créer une action pour supprimer un utilisateur `src/home/states/user.state.ts` :
 
