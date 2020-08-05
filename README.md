@@ -81,9 +81,28 @@ export class UsersComponent implements OnInit {
     }
 
     public delete(user: IUser) {
-        // TODO
+       this.store.dispatch(new DeleteUser({...user})).subscribe(() => console.log(`${user.email} supprimé`));
     }
 }
+```
+
+- Editer la partie HMTL pour afficher la liste reçue aux changements `src/home/containers/users/users.component.html` :
+
+```html
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of (users$ | async).users" (click)="delete(user)">
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+        </tr>
+    </tbody>
+</table>
 ```
 
 ### Supprimer un utilisateur (Branche : <https://github.com/remylavergne/ngxs-workshop/tree/delete-user>)
