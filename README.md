@@ -88,6 +88,15 @@ export class UsersComponent implements OnInit {
 
 ### Supprimer un utilisateur (Branche : <https://github.com/remylavergne/ngxs-workshop/tree/delete-user>)
 
+- Créer la classe permettant de définir l'action `src/home/actions/user/delete-user.action.ts` :
+
+```typescript
+export class DeleteUser {
+    static readonly type = '[User] Delete';
+    constructor(public payload: IUser) { }
+}
+```
+
 - Créer une action pour supprimer un utilisateur `src/home/states/user.state.ts` :
 
 ```typescript
@@ -103,12 +112,7 @@ export class UserState {
 
     @Action(DeleteUser)
     public delete(ctx: StateContext<UserStateModel>, user: DeleteUser): void {
-        // State actuel
-        const state = ctx.getState();
-        // Modification du State actuel en supprimant l'utilisateur cliqué 
-        ctx.patchState({
-            users: [...state.users.filter(u => u.email !== user.payload.email)]
-        });
+        // TODO
     }
 }
 ```
