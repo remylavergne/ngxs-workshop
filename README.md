@@ -28,8 +28,7 @@ Au démarrage de l'application, il n'y a aucun utilisateur enregistré dans le *
 
 ```typescript
 export class AddUser {
-    static readonly type = '[User] Add';
-    constructor(public payload: IUser) { }
+    // TODO
 }
 ```
 
@@ -56,7 +55,7 @@ export class AddUserComponent implements OnInit {
    // ... Logique de formulaire pour récupérer les informations
 
     private addUser(user: IUser) {
-        this.store.dispatch(new AddUser({ ...user })).subscribe(() => this.form.reset());
+        // TODO
     }
 }
 ```
@@ -72,45 +71,30 @@ export class AddUserComponent implements OnInit {
 })
 export class UsersComponent implements OnInit {
 
-    // Ajout d'un @Select pour écouter les changements du Store
-    @Select(state => state.users) users$: Observable<UserStateModel>;
+    // TODO: Ajout d'un @Select pour écouter les changements du Store
 
     constructor(private store: Store) { }
 
     ngOnInit() {
     }
 
-    public delete(user: IUser) {
-        // TODO
-    }
 }
 ```
 
-### Supprimer un utilisateur (version facile)
+- Editer la partie HMTL pour afficher la liste reçue aux changements `src/home/containers/users/users.component.html` :
 
-- Créer une action pour supprimer un utilisateur `src/home/states/user.state.ts` :
-
-```typescript
-@State<UserStateModel>({
-    name: 'users',
-    defaults: {
-        users: []
-    }
-})
-export class UserState {
-
-   // ...
-
-    @Action(DeleteUser)
-    public delete(ctx: StateContext<UserStateModel>, user: DeleteUser): void {
-        // State actuel
-        const state = ctx.getState();
-        // Modification du State actuel en supprimant l'utilisateur cliqué 
-        ctx.patchState({
-            users: [...state.users.filter(u => u.email !== user.payload.email)]
-        });
-    }
-}
+```html
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Afficher la liste des utilisateurs -->
+    </tbody>
+</table>
 ```
 
 ## Ressources
