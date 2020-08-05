@@ -22,6 +22,8 @@ Ouvrir l'adresse dans le navigateur : <http://localhost:4200/>
 
 Au démarrage de l'application, il n'y a aucun utilisateur enregistré dans le *State* initial.
 
+⚠️ Toutes les modifications / solutions sont ici, pour commencer le tutorial, vous devez vous placer sur la branche <https://github.com/remylavergne/ngxs-workshop/tree/add-user>
+
 ### Créer un utilisateur (Branche : <https://github.com/remylavergne/ngxs-workshop/tree/add-user>)
 
 - Créer une action pour ajouter une utilisateur `src/home/actions/user/add-user.action.ts` :
