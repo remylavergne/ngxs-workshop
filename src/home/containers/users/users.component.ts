@@ -21,7 +21,6 @@ export class UsersComponent implements OnInit {
     }
 
     public delete(user: IUser) {
-       console.log('Utilisateur à supprimer', user);
-       this.store.dispatch(new DeleteUser({...user})).subscribe(() => console.log(`${user.email} supprimé`));
+      // TODO: Envoyer l'utilisateur à supprimer au Store
     }
 }

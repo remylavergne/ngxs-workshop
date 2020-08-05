@@ -24,14 +24,4 @@ export class UserState {
         });
     }
 
-    @Action(DeleteUser)
-    public delete(ctx: StateContext<UserStateModel>, user: DeleteUser): void {
-        // State actuel
-        const state = ctx.getState();
-        // Modification du State actuel
-        ctx.patchState({
-            users: [...state.users.filter(u => u.email !== user.payload.email)]
-        });
-    }
-
 }

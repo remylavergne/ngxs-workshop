@@ -37,7 +37,6 @@ export class AddUserComponent implements OnInit {
      */
     private addUser(user: IUser) {
         this.store.dispatch(new AddUser({ ...user }))
-        .pipe()
         .subscribe(() => {
             console.log(`${user.email} ajouté au Store`);
             this.form.reset();
