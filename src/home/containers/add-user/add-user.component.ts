@@ -7,8 +7,7 @@ import { IUser } from '../../interfaces';
 
 @Component({
     selector: 'app-add-user',
-    templateUrl: './add-user.component.html',
-    styleUrls: ['./add-user.component.scss']
+    templateUrl: './add-user.component.html'
 })
 export class AddUserComponent implements OnInit {
 
@@ -32,8 +31,16 @@ export class AddUserComponent implements OnInit {
         this.addUser(this.form.value);
     }
 
+    /**
+     * Fonction pour ajouter un utilisateur dans le Store.
+     * Lorsque l'utilisateur est ajouté, le formulaire est remis à zéro.
+     */
     private addUser(user: IUser) {
-        this.store.dispatch(new AddUser({ ...user })).subscribe(() => this.form.reset());
+        this.store.dispatch(new AddUser({ ...user }))
+        .pipe()
+        .subscribe(() => {
+            console.log(`${user.email} ajouté au Store`);
+            this.form.reset();
+        });
     }
-
 }

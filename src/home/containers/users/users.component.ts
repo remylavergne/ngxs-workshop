@@ -1,15 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngxs/store';
+// Dépendance à la librairie ngxs
+import { Store, Select } from '@ngxs/store';
 import { Observable, of } from 'rxjs';
 
 import { IUser } from '../../interfaces';
+import { UserStateModel } from 'src/home/models/states/user-state.model';
+import { DeleteUser } from 'src/home/actions';
 
 @Component({
     selector: 'app-users',
-    templateUrl: './users.component.html',
-    styleUrls: ['./users.component.scss']
+    templateUrl: './users.component.html'
 })
 export class UsersComponent implements OnInit {
+
+    @Select(state => state.users) users$: Observable<UserStateModel>;
 
     constructor(private store: Store) { }
 
@@ -17,14 +21,7 @@ export class UsersComponent implements OnInit {
     }
 
     public delete(user: IUser) {
-        // TODO
+       console.log('Utilisateur à supprimer', user);
+       this.store.dispatch(new DeleteUser({...user})).subscribe(() => console.log(`${user.email} supprimé`));
     }
-
-    // TODO replace by a selector
-    public get users(): Observable<IUser[]> {
-        return of(
-            []
-        );
-    }
-
 }
