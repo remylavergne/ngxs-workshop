@@ -6,6 +6,17 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 - Redux DevTools : https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?utm_source=chrome-ntp-icon
 
+## Lancement du projet
+
+```text
+1. Installation des packages NPM
+$ npm install && npm install node-sass
+2. Lancement de l'application
+$ npm start
+```
+
+Ouvrir l'adresse dans le navigateur : <http://localhost:4200/>
+
 ## Exercices
 
 ### 1) Récupérer les utilisateurs ajoutés du store
