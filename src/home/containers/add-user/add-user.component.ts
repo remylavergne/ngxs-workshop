@@ -36,11 +36,6 @@ export class AddUserComponent implements OnInit {
      * Lorsque l'utilisateur est ajouté, le formulaire est remis à zéro.
      */
     private addUser(user: IUser) {
-        this.store.dispatch(new AddUser({ ...user }))
-        .pipe()
-        .subscribe(() => {
-            console.log(`${user.email} ajouté au Store`);
-            this.form.reset();
-        });
+        // TODO: Développer la fonction pour ajouter un utilisateur
     }
 }

@@ -6,9 +6,6 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let user of (users$ | async).users" (click)="delete(user)">
-            <td>{{ user.name }}</td>
-            <td>{{ user.email }}</td>
-        </tr>
+        <!-- Afficher la liste des utilisateurs -->
     </tbody>
 </table>

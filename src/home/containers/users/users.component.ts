@@ -13,15 +13,11 @@ import { DeleteUser } from 'src/home/actions';
 })
 export class UsersComponent implements OnInit {
 
-    @Select(state => state.users) users$: Observable<UserStateModel>;
+    // TODO: Ajouter un @Select pour écouter les changements du Store
 
     constructor(private store: Store) { }
 
     ngOnInit() {
     }
 
-    public delete(user: IUser) {
-       console.log('Utilisateur à supprimer', user);
-       this.store.dispatch(new DeleteUser({...user})).subscribe(() => console.log(`${user.email} supprimé`));
-    }
 }

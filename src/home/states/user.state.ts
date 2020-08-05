@@ -16,22 +16,6 @@ import { UserStateModel } from '../models';
 })
 export class UserState {
 
-    @Action(AddUser)
-    public add(ctx: StateContext<UserStateModel>, { payload }: AddUser) {
-        const state = ctx.getState();
-        ctx.patchState({
-            users: [...state.users, payload]
-        });
-    }
-
-    @Action(DeleteUser)
-    public delete(ctx: StateContext<UserStateModel>, user: DeleteUser): void {
-        // State actuel
-        const state = ctx.getState();
-        // Modification du State actuel
-        ctx.patchState({
-            users: [...state.users.filter(u => u.email !== user.payload.email)]
-        });
-    }
+    // TODO: Créer une @Action pour ajouter un utilisateur
 
 }
