@@ -2,27 +2,117 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.4.
 
-## Outils
+## Pré-requis
 
-- Redux DevTools : https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?utm_source=chrome-ntp-icon
+- Avoir des connaissances en Angular
+- Lire la documentation [ngxs](https://www.ngxs.io/)
+
+## Lancement du projet
+
+```text
+1. Installation des packages NPM
+npm install
+2. Lancement de l'application
+npm start
+```
+
+Ouvrir l'adresse dans le navigateur : <http://localhost:4200/>
 
 ## Exercices
 
-### 1) Récupérer les utilisateurs ajoutés du store
+Au démarrage de l'application, il n'y a aucun utilisateur enregistré dans le *State* initial.
 
-- créer un sélecteur "getUsers" dans UserState
-- Utiliser ce sélecteur dans le composant UsersComponent
+### Créer un utilisateur (Branche : <https://github.com/remylavergne/ngxs-workshop/tree/add-user>)
 
-### 2) Au clic sur un utilisateur, ouvrir une modal de confirmation pour le supprimer
+- Créer une action pour ajouter une utilisateur `src/home/actions/user/add-user.action.ts` :
 
-- Créer une action OpenModal qui prend l'interface IModal en paramètre de constructeur
-- Créer le state comprenant la méthode open et les selecteurs "isOpened", "getTitle", "getText", "getConfirmBtn" et "getCloseBtn"
-- Dans ModalComponent, conditionner son affichage en fonction de ces sélecteurs
+```typescript
+export class AddUser {
+    static readonly type = '[User] Add';
+    constructor(public payload: IUser) { }
+}
+```
 
-### 3) Confirmer la suppression de l'utilisateur
+Cette action prend un utilisateur en paramètre. C'est cette information que nous allons garder dans le *State*.
 
-- Créer une action DeleteUser dans UserState
-- Ajouter l'appel à cette action dans "confirmCallback" de la modal de confirmation
-- Créer une action CloseModal prenant en paramètre ModalActionsEnum et ajouter une méthode correspondante dans ModalState
-- Appeler l'action "CloseModal" au click sur les boutons de fermeture de la modal et sur le bouton confirmer
-- Dans le cas de la confirmation, appeler le callback "confirmCallback"
+- *Dispatch* du nouvel utilisateur dans le *Store* `src/home/home.component.html` :
+
+```typescript
+@Component({
+    selector: 'app-add-user',
+    templateUrl: './add-user.component.html'
+})
+export class AddUserComponent implements OnInit {
+
+    public form: FormGroup;
+
+    constructor(private fb: FormBuilder, private store: Store) {
+        this.createForm();
+    }
+
+    ngOnInit() {
+    }
+
+   // ... Logique de formulaire pour récupérer les informations
+
+    private addUser(user: IUser) {
+        this.store.dispatch(new AddUser({ ...user })).subscribe(() => this.form.reset());
+    }
+}
+```
+
+### Afficher un utilisateur
+
+- Récupérer l'état du Store pour afficher la liste des utilisateurs enregistrés `src/home/containers/users/users.component.ts` :
+
+```typescript
+@Component({
+    selector: 'app-users',
+    templateUrl: './users.component.html'
+})
+export class UsersComponent implements OnInit {
+
+    // Ajout d'un @Select pour écouter les changements du Store
+    @Select(state => state.users) users$: Observable<UserStateModel>;
+
+    constructor(private store: Store) { }
+
+    ngOnInit() {
+    }
+
+    public delete(user: IUser) {
+        // TODO
+    }
+}
+```
+
+### Supprimer un utilisateur (Branche : <https://github.com/remylavergne/ngxs-workshop/tree/delete-user>)
+
+- Créer une action pour supprimer un utilisateur `src/home/states/user.state.ts` :
+
+```typescript
+@State<UserStateModel>({
+    name: 'users',
+    defaults: {
+        users: []
+    }
+})
+export class UserState {
+
+   // ...
+
+    @Action(DeleteUser)
+    public delete(ctx: StateContext<UserStateModel>, user: DeleteUser): void {
+        // State actuel
+        const state = ctx.getState();
+        // Modification du State actuel en supprimant l'utilisateur cliqué 
+        ctx.patchState({
+            users: [...state.users.filter(u => u.email !== user.payload.email)]
+        });
+    }
+}
+```
+
+## Ressources
+
+- [ngxs.io](https://www.ngxs.io/)
