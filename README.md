@@ -92,8 +92,7 @@ export class UsersComponent implements OnInit {
 
 ```typescript
 export class DeleteUser {
-    static readonly type = '[User] Delete';
-    constructor(public payload: IUser) { }
+    // TODO
 }
 ```
 
