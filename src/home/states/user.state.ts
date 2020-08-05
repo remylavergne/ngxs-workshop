@@ -1,6 +1,5 @@
-import { Action, State, StateContext } from '@ngxs/store';
+import { State } from '@ngxs/store';
 
-import { AddUser, DeleteUser } from '../actions';
 import { UserStateModel } from '../models';
 
 @State<UserStateModel>({
